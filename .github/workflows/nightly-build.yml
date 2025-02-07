@@ -1,9 +1,14 @@
 name: Nightly Build
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch: # To run the workflow manually if needed
   schedule:
     - cron: '0 0 * * *' # once a day
+  pull_request:
+    types: [closed] # Trigger when pull requests are closed (merged)
 
 jobs:
   evaluateChanges:
@@ -15,7 +20,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-
       - name: Check
         id: check
         run: |
@@ -34,13 +38,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: 21
           distribution: temurin
-
       - name: Build and send apks to telegram
         run: |
           ./gradlew assembleNightly
@@ -51,11 +53,9 @@ jobs:
             -F parse_mode=HTML \
             -F document=@"$apk_path"
           rm "$apk_path"
-
       - name: Update the runtime dependencies report
         run: |
           ./gradlew PersianCalendar:dependencies --configuration releaseRuntimeClasspath | grep -e '--- ' > PersianCalendar/runtime-dependencies-report.txt
-
       - name: Add and commit the report
         uses: EndBug/add-and-commit@db73408897f13b2878d08ac8b3f8e51cd492c8f2
         with:
