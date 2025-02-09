@@ -41,7 +41,9 @@
 
     <color name="widget_add_event_icon">#D3E3FD</color>
     <color name="widget_add_event">#0B57D0</color>
-    <color name="widget_schedule_background">#FFFFFF</color>
+    <color name="widget_schedule_today_text">#FFFFFF</color>
+    <color name="widget_schedule_today">#0B57D0</color>
+    <color name="widget_modern_background">#FFFFFF</color>
     <color name="widget_schedule_title">#000000</color>
     <color name="widget_schedule_event">#FFFFFF</color>
     <color name="widget_nothing_scheduled">#8D95AD</color>
@@ -69,9 +71,6 @@
     <color name="sun_view_dynamic_night_color">@color/sun_view_night_color</color>
     <color name="sun_view_dynamic_day_color">@color/sun_view_day_color</color>
     <color name="sun_view_dynamic_midday_color">@color/sun_view_midday_color</color>
-
-    <dimen name="widget_schedule_item_end_padding">8dip</dimen>
-    <dimen name="widget_schedule_horizontal_padding">8dip</dimen>
 
     <!-- == Level == -->
     <!-- Dimen -->
